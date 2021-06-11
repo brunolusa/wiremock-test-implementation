@@ -23,7 +23,7 @@ public class BaseTest {
     }
 
     private void buildStubMock() {
-        wireMockServer.stubFor(get(urlEqualTo("/teste"))
+        wireMockServer.stubFor(get(urlEqualTo("/ws/74710060/json"))
                 .willReturn(aResponse()
                         .withHeader("Content-Type", "application/json")
                         .withHeader("x-v", "1.0.0")
