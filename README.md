@@ -3,6 +3,9 @@ Projeto de testes back-end com utilização de Mock's (WireMock)
 
 Objetivo: Validar requisições HTTP com response body _mockado_.
 
+https://github.com/brunolusa/wiremock-test-implementation/actions/workflows/<WORKFLOW_FILE>/badge.svg
+
+
 # Bibliotecas Utilizadas
 
 Mock: WireMock
