@@ -1,5 +1,6 @@
 package basetest;
 
+import Utils.Environment;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -14,15 +15,17 @@ public class BaseTest {
     @BeforeTest
     public void setUp(){
 
-        wireMockServer = new WireMockServer(8080);
-        wireMockServer.start();
-        buildStubMock();
+        if(Environment.getEnvironment().equals(Environment.EnvironmentInterface.MOCK)){
+            buildStubMock();
+        }
 
         enableLoggingOfRequestAndResponseIfValidationFails();
 
     }
 
     private void buildStubMock() {
+        wireMockServer = new WireMockServer(8080);
+        wireMockServer.start();
         wireMockServer.stubFor(get(urlEqualTo("/ws/74710060/json"))
                 .willReturn(aResponse()
                         .withHeader("Content-Type", "application/json")
@@ -34,6 +37,9 @@ public class BaseTest {
 
     @AfterTest
     public void tearDown(){
-        wireMockServer.stop();
+
+        if(Environment.getEnvironment().equals(Environment.EnvironmentInterface.MOCK)) {
+            wireMockServer.stop();
+        }
     }
 }
