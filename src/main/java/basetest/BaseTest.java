@@ -33,6 +33,12 @@ public class BaseTest {
                         .withStatus(200)
                         .withBodyFile("responseBodyTest.json")));
 
+        wireMockServer.stubFor(post(urlEqualTo("/ws/"))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", "application/json")
+                        .withHeader("x-v", "1.0.0")
+                        .withStatus(201)));
+
     }
 
     @AfterTest

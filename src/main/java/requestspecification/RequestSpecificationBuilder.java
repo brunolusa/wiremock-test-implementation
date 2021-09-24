@@ -12,7 +12,7 @@ import static Utils.PropertyLoader.retornarValorArquivoConfiguracao;
 public class RequestSpecificationBuilder {
 
     private static String BASEURI = retornarValorArquivoConfiguracao("baseUri");
-//    private static String PORT = retornarValorArquivoConfiguracao("port");
+    private static String PORT = retornarValorArquivoConfiguracao("port");
     private static String BASEPATH = retornarValorArquivoConfiguracao("basePath");
 
     public static RequestSpecification getRequestSpecification() {
@@ -25,7 +25,7 @@ public class RequestSpecificationBuilder {
                 )
                 .setContentType(ContentType.JSON)
                 .setBaseUri(BASEURI)
-//                .setPort(Integer.parseInt(PORT))
+                .setPort(Integer.parseInt(PORT))
                 .setBasePath(BASEPATH)
                 .log(LogDetail.ALL)
                 .addFilter(new ResponseLoggingFilter())

@@ -23,4 +23,10 @@ public class GetFunctionalCepTest extends BaseTest {
             body("cep",is("74710-060"));
 
     }
+
+    @Test
+    public void adicionandoCepComSucesso(){
+
+        when().post("http://localhost:8080/ws/").then().statusCode(201);
+    }
 }
