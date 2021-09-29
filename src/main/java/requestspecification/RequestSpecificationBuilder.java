@@ -31,4 +31,20 @@ public class RequestSpecificationBuilder {
                 .addFilter(new ResponseLoggingFilter())
                 .build();
     }
+
+    public static RequestSpecification getRequestSpecificationPost() {
+        return new RequestSpecBuilder()
+                .setConfig(
+                        new RestAssuredConfig()
+                                .sslConfig(
+                                        new SSLConfig().relaxedHTTPSValidation()
+                                )
+                )
+                .setContentType(ContentType.JSON)
+                .setBaseUri(BASEURI)
+                .setPort(Integer.parseInt(PORT))
+                .log(LogDetail.ALL)
+                .addFilter(new ResponseLoggingFilter())
+                .build();
+    }
 }

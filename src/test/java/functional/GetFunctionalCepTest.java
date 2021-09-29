@@ -1,13 +1,10 @@
 package functional;
 
 import basetest.BaseTest;
-import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.Test;
-import requestspecification.RequestSpecificationBuilder;
-
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.CoreMatchers.*;
-import static requestspecification.RequestSpecificationBuilder.getRequestSpecification;
+import static requestspecification.RequestSpecificationBuilder.*;
 
 public class GetFunctionalCepTest extends BaseTest {
 
@@ -15,6 +12,7 @@ public class GetFunctionalCepTest extends BaseTest {
     public void obtendoCpfComSucesso(){
 
         given().
+            log().all().
             spec(getRequestSpecification()).
         when().
             get().
@@ -26,7 +24,12 @@ public class GetFunctionalCepTest extends BaseTest {
 
     @Test
     public void adicionandoCepComSucesso(){
-
-        when().post("http://localhost:8080/ws/").then().statusCode(201);
+        given().
+            log().all().
+            spec(getRequestSpecificationPost()).
+        when().
+            post("ws/").
+        then().
+            statusCode(201);
     }
 }
